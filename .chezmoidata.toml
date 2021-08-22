@@ -1,0 +1,3 @@
+[auth]
+	bw_ssh = "SSH Key"
+	bw_identity  = "Whoami"

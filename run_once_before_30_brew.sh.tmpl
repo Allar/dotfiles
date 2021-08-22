@@ -1,0 +1,52 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+
+brew 'dockutil'
+
+tap 'homebrew/cask' || true
+tap 'homebrew/cask-versions' || true
+
+cask 'google-chrome'
+cask 'bitwarden'
+cask 'visual-studio-code'
+cask 'iterm2'
+
+{{- if (.install_qol_apps) }}
+cask 'vlc'
+cask 'spotify'
+{{- end }}
+
+{{- if (.install_dev_apps) }}
+
+tap 'jesseduffield/lazygit'
+brew 'lazygit'
+
+brew 'bat'
+brew 'curl'
+brew 'exa'
+brew 'ffmpeg'
+brew 'gh'
+brew 'git'
+brew 'gnu-units'
+brew 'go'
+brew 'hugo'
+brew 'jq'
+brew 'node'
+brew 'ripgrep'
+brew 'tmux'
+brew 'wget'
+brew 'youtube-dl'
+
+cask 'docker'
+cask 'balenaetcher'
+
+{{- end }}
+
+EOF
+
+{{ end -}}
+

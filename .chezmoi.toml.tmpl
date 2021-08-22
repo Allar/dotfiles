@@ -1,0 +1,14 @@
+{{- $overwrite_keys := promptBool "THIS IS GOING TO OVERWRITE YOUR SSH KEYS. ABORT NOW TO CANCEL!"}}
+
+{{- $desired_hostname := promptString "Desired hostname for this machine?" -}}
+{{- $bw_email := promptString "BitWarden Email? " -}}
+
+{{- $install_qol_apps := promptBool "Install Quality of Life apps? (y/n)" -}}
+{{- $install_dev_apps := promptBool "install Developer apps? (y/n)" -}}
+
+[data]
+    desired_hostname = "{{ $desired_hostname }}"
+    bw_email = "{{ $bw_email }}"
+
+    install_qol_apps = "{{ $install_qol_apps }}"
+    install_dev_apps = "{{ $install_dev_apps }}"

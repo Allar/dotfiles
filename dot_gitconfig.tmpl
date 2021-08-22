@@ -1,0 +1,3 @@
+[user]
+	email = {{ (bitwarden "item" .auth.bw_identity).identity.email }}
+	name = "{{ (bitwarden "item" .auth.bw_identity).identity.firstName }} {{ (bitwarden "item" .auth.bw_identity).identity.lastName }}"

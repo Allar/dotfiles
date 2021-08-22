@@ -1,0 +1,35 @@
+{{- if (eq .chezmoi.os "darwin") -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+# no brew means attempt to install brew
+{{ if not (or (stat "/opt/homebrew/bin/brew") (stat "/usr/local/bin/brew") ) -}}
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+{{ end -}}
+
+
+{{ if stat "/opt/homebrew/bin/brew" -}}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ else if stat "/usr/local/bin/brew" -}}
+eval "$(/usr/local/bin/brew shellenv)"
+{{ end -}}
+
+# uninstall mac app store apps
+# #todo
+brew bundle --no-lock --file=/dev/stdin <<EOF
+
+brew 'mas'
+
+EOF
+
+# sudo mas uninstall 409203825 #  Numbers
+# sudo mas uninstall 408981434 #  iMovie
+# sudo mas uninstall 409183694 #  Keynote
+# sudo mas uninstall 497799835 #  Xcode
+# sudo mas uninstall 409201541 #  Pages
+# sudo mas uninstall 682658836 #  GarageBand
+
+
+
+{{- end }}
