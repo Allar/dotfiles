@@ -1,15 +1,21 @@
-{{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/bash
 
-# install bitwarden and related auth tools
+# linux: install bitwarden and related auth tools
+{{- if (eq .chezmoi.os "linux") -}}
+sudo apt install jq git wget gnupg gnupg2 -y
+brew install bitwarden-cli
+{{ end -}}
+
+# darwin: install bitwarden and related auth tools
+{{- if (eq .chezmoi.os "darwin") -}}
 brew bundle --no-lock --file=/dev/stdin <<EOF
 
-brew 'jq'
 brew 'bitwarden-cli'
 brew 'gnupg'
 brew 'gnupg2'
 
 EOF
+{{ end -}}
 
 printf 'Checking if logged into Bitwarden...\n'
 
@@ -46,5 +52,3 @@ else
 fi
 
 echo 'Finished Bitwarden setup.'
-
-{{- end }}

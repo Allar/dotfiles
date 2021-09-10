@@ -1,4 +1,3 @@
-{{- if (eq .chezmoi.os "darwin") -}}
 #!/bin/bash
 
 set -eufo pipefail
@@ -15,6 +14,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(/usr/local/bin/brew shellenv)"
 {{ end -}}
 
+
+{{- if (eq .chezmoi.os "darwin") -}}
 # uninstall mac app store apps
 # #todo
 brew bundle --no-lock --file=/dev/stdin <<EOF
@@ -29,7 +30,5 @@ EOF
 # sudo mas uninstall 497799835 #  Xcode
 # sudo mas uninstall 409201541 #  Pages
 # sudo mas uninstall 682658836 #  GarageBand
-
-
 
 {{- end }}

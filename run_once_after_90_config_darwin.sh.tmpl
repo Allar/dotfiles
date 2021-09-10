@@ -1,5 +1,6 @@
-{{ if (eq .chezmoi.os "darwin") -}}
 #!/usr/bin/env bash
+
+{{ if (eq .chezmoi.os "darwin") -}}
 
 # ~/.macos — https://mths.be/macos
 # https://github.com/mathiasbynens/dotfiles/blob/main/.macos
@@ -858,3 +859,7 @@ for app in "Activity Monitor" \
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
 {{- end }}
+
+{{ if (ne .chezmoi.os "darwin") -}}
+echo "You may need to install fonts for your terminal to render correctly. See: https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k"
+{{- end -}}
