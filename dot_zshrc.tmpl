@@ -105,4 +105,6 @@ export NVM_DIR="$HOME/.nvm"
 {{/* vim: set filetype=zsh: */}}
 
 # go
+export GOPATH=~/go
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$(go env GOPATH)/bins
