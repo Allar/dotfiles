@@ -15,6 +15,17 @@ sudo apt install gh -y
 # exa is a ls replacement
 sudo apt install exa -y
 
+# install go
+cd ~
+wget https://golang.org/dl/go1.17.1.windows-amd64.msi
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf go1.17.1.linux-amd64.tar.gz
+
+# install cloudflared
+echo 'deb http://pkg.cloudflare.com/ focal main' | sudo tee /etc/apt/sources.list.d/cloudflare-main.list
+curl -C - https://pkg.cloudflare.com/pubkey.gpg | sudo apt-key add -
+sudo apt-get update
+sudo apt install cloudflared
 
 {{ end -}}
 
@@ -54,6 +65,9 @@ brew 'ripgrep'
 brew 'tmux'
 brew 'wget'
 brew 'youtube-dl'
+
+tap 'cloudflare/cloudflare'
+brew 'cloudflare/cloudflare/cloudflared'
 
 cask 'docker'
 cask 'balenaetcher'
