@@ -3,10 +3,10 @@
 {{- $desired_hostname := promptString "Desired hostname for this machine?" -}}
 {{- $bw_email := promptString "BitWarden Email? " -}}
 
+{{ $install_qol_apps := false}}
+
 {{- if (ne .chezmoi.os "linux") -}}
 {{- $install_qol_apps := promptBool "Install Quality of Life apps? (y/n)" -}}
-{{- else -}}
-{{ $install_qol_apps := false}}
 {{- end -}}
 
 [data]
@@ -14,4 +14,4 @@
     bw_email = "{{ $bw_email }}"
 
     install_qol_apps = "{{ $install_qol_apps }}"
-    install_dev_apps = "{{ $install_dev_apps }}"
+    install_dev_apps = true

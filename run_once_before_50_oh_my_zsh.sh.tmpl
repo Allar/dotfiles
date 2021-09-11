@@ -15,7 +15,7 @@ brew 'zsh'
 EOF
 
 echo "Changing default shell to zsh..."
-chsh -s /usr/local/bin/zsh
+chsh -s $(which zsh)
 
 (
 	cd $HOME/Library/Fonts &&
